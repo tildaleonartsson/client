@@ -10,6 +10,7 @@ import { HeaderComponent } from '../../component/header/header.component';
   imports: [CommonModule, HeaderComponent],
   template: `
     <app-header></app-header>
+    <h1>Text</h1>
     <h2>Böcker</h2>
     <div *ngFor="let book of books">
       <h3>{{ book.title }} – {{ book.author }}</h3>

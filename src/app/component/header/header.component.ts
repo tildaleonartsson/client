@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service'; // Justera sökvägen om nödvändigt
 
 @Component({
   selector: 'app-header',
@@ -25,17 +26,31 @@ import { RouterModule } from '@angular/router';
         <a class="btn btn-outline-success me-lg-2 mb-2 mb-lg-0" routerLink="/quotes">
           <i class="fa-solid fa-quote-right me-2"></i>Mina citat
         </a>
-        <a class="btn btn-outline-success" routerLink="/login">
-          <i class="fa-solid fa-right-to-bracket"></i>
-        </a>
+        <ng-container *ngIf="isLoggedIn(); else loginBtn">
+          <button class="btn btn-outline-danger" (click)="logout()">
+            <i class="fa-solid fa-right-from-bracket me-2"></i>Logga ut
+          </button>
+        </ng-container>
+        <ng-template #loginBtn>
+          <a class="btn btn-outline-success" routerLink="/login">
+            <i class="fa-solid fa-right-to-bracket me-2"></i>Logga in
+          </a>
+        </ng-template>
       </div>
     </div>
   </div>
 </nav>
-
-
   `
 })
 export class HeaderComponent {
+  constructor(private authService: AuthService, private router: Router) {}
 
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
+  }
 }

@@ -58,7 +58,7 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login() {
-    this.http.post<{ token: string }>('http://localhost:5000/auth/login', {
+    this.http.post<{ token: string }>('http://localhost:5210/api/users/login', {
       username: this.username,
       password: this.password
     }).subscribe({

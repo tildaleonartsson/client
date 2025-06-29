@@ -16,9 +16,8 @@ import { RouterModule } from '@angular/router';
     <div class="container py-5">
       <div
         class="d-flex justify-content-center align-items-center flex-column mt-5"
-        style="min-height: calc(100vh - 300px); padding-top: 0px;"
       >
-        <h1 *ngIf="!isLoggedIn">Välkommen, gäst!</h1>
+        <h1 *ngIf="!isLoggedIn" class="text-success">Välkommen, gäst!</h1>
         <p *ngIf="!isLoggedIn" class="text-muted">
           Du kan logga in för att komma åt alla funktioner.
         </p>
@@ -26,7 +25,7 @@ import { RouterModule } from '@angular/router';
 
       <ng-container *ngIf="isLoggedIn">
         <h2 class="text-center mb-4">
-          <i class="fas fa-book fa-lg me-2"></i>MinaBöcker
+          <i class="fas fa-book fa-lg me-2"></i>Mina Böcker
         </h2>
 
         <div class="row g-4 justify-content-center">

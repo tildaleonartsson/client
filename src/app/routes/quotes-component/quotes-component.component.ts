@@ -17,7 +17,7 @@ interface Quote {
   imports: [CommonModule, HeaderComponent, FormsModule],
   template: `
     <app-header></app-header>
-    <div class="container py-5">
+    <div class="container py-5 mt-5">
       <h2 class="mb-4 text-center">
         <i class="fa-solid fa-quote-right me-2"></i>Mina Citat
       </h2>
@@ -28,7 +28,7 @@ interface Quote {
             <div class="card-body">
               <blockquote class="blockquote mb-3">
                 <p class="mb-2">"{{ quote.text }}"</p>
-                <footer class="blockquote-footer">
+                <footer class="blockquote-footer mt-3">
                   {{ quote.author }} i
                   <cite title="Boktitel">{{ quote.bookTitle }}</cite>
                 </footer>

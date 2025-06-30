@@ -62,21 +62,12 @@ export class LoginComponent {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  /*************  ✨ Windsurf Command ⭐  *************/
-  /**
-   * Logs in the user with the given username and password, and navigates
-   * to the root route if the login is successful.
-   */
-  /*******  6901c1c9-5fa9-4bea-bc8e-dc25c4fe84f9  *******/
   login() {
     this.http
-      .post<{ token: string }>(
-        'https://server-974x.onrender.com/api/users/login',
-        {
-          username: this.username,
-          password: this.password,
-        }
-      )
+      .post<{ token: string }>('http://localhost:5210/api/users/login', {
+        username: this.username,
+        password: this.password,
+      })
       .subscribe({
         next: (res) => {
           localStorage.setItem('token', res.token);

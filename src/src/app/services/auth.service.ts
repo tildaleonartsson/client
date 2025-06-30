@@ -5,27 +5,25 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://server-974x.onrender.com/api/users';
+  private apiUrl = 'http://localhost:5210/api/users';
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(username: string, password: string): Observable<any> {
-    return new Observable((observer) => {
-      this.http
-        .post<any>(`${this.apiUrl}/login`, { username, password })
-        .subscribe({
-          next: (res) => {
-            const token = res.token;
-            if (token) {
-              localStorage.setItem('token', token);
-            }
-            observer.next(res);
-            observer.complete();
-          },
-          error: (err) => observer.error(err),
-        });
+login(username: string, password: string): Observable<any> {
+  return new Observable(observer => {
+    this.http.post<any>(`${this.apiUrl}/login`, { username, password }).subscribe({
+      next: (res) => {
+        const token = res.token;
+        if (token) {
+          localStorage.setItem('token', token);
+        }
+        observer.next(res);
+        observer.complete();
+      },
+      error: (err) => observer.error(err)
     });
-  }
+  });
+}
 
   register(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { username, password });

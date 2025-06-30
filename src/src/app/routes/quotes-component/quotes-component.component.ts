@@ -148,7 +148,7 @@ export class QuotesComponent implements OnInit {
 
   loadQuotes() {
     this.http
-      .get<Quote[]>('https://server-974x.onrender.com/quotes/my')
+      .get<Quote[]>('http://localhost:5210/quotes/my')
       .subscribe((data) => {
         this.quotes = data;
       });
@@ -156,7 +156,7 @@ export class QuotesComponent implements OnInit {
 
   addQuote() {
     this.http
-      .post<Quote>('https://server-974x.onrender.com/quotes', this.currentQuote)
+      .post<Quote>('http://localhost:5210/quotes', this.currentQuote)
       .subscribe(() => {
         this.currentQuote = { text: '', bookTitle: '', author: '' };
         this.loadQuotes();
@@ -165,11 +165,9 @@ export class QuotesComponent implements OnInit {
 
   deleteQuote(id: number) {
     if (confirm('Är du säker på att du vill ta bort detta citat?')) {
-      this.http
-        .delete(`https://server-974x.onrender.com/quotes/${id}`)
-        .subscribe(() => {
-          this.loadQuotes();
-        });
+      this.http.delete(`http://localhost:5210/quotes/${id}`).subscribe(() => {
+        this.loadQuotes();
+      });
     }
   }
 
@@ -182,7 +180,7 @@ export class QuotesComponent implements OnInit {
     if (this.editQuote && this.editQuote.id) {
       this.http
         .put<Quote>(
-          `https://server-974x.onrender.com/quotes/${this.editQuote.id}`,
+          `http://localhost:5210/quotes/${this.editQuote.id}`,
           this.currentQuote
         )
         .subscribe(() => {

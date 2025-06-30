@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../component/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, HeaderComponent],
+  imports: [CommonModule, FormsModule, HeaderComponent, HttpClientModule],
   template: `
     <app-header></app-header>
     <div
@@ -44,6 +45,7 @@ import { HeaderComponent } from '../../component/header/header.component';
               type="password"
               class="form-control"
               placeholder="••••••••"
+              autocomplete="current-password"
               required
             />
           </div>

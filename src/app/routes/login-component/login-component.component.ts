@@ -2,14 +2,20 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../../component/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, HeaderComponent, HttpClientModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HeaderComponent,
+    HttpClientModule,
+    RouterModule,
+  ],
   template: `
     <app-header></app-header>
     <div
@@ -54,7 +60,12 @@ import { HttpClientModule } from '@angular/common/http';
             <i class="fa-solid fa-right-to-bracket me-2"></i>Logga in
           </button>
         </form>
-        <a routerLink="/register">Skapa konto</a>
+        <div class="text-center mt-3">
+          <small
+            >Har du inget konto?
+            <a routerLink="/register">Skapa ett här</a>
+          </small>
+        </div>
       </div>
     </div>
   `,

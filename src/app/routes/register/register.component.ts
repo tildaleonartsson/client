@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-register',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   template: `
     <div
       class="container d-flex justify-content-center align-items-center min-vh-100"
@@ -91,7 +91,10 @@ export class RegisterComponent {
     this.authService.register(this.username, this.password).subscribe({
       next: () => this.router.navigate(['/login']),
       error: (err) => {
-        this.errorMessage = err.error || 'Registrering misslyckades.';
+        console.error('Registreringsfel:', err); // Bra för felsökning i konsolen
+
+        this.errorMessage =
+          err.error?.message || err.error || 'Registrering misslyckades.';
       },
     });
   }

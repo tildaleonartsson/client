@@ -54,6 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
             <i class="fa-solid fa-right-to-bracket me-2"></i>Logga in
           </button>
         </form>
+        <a routerLink="/register">Skapa konto</a>
       </div>
     </div>
   `,
